@@ -1,12 +1,14 @@
 #include <iostream>
 using namespace std;
-#define MAX_SIZE 100
+#define MAX_SIZE 50
 
 int arr[MAX_SIZE];
-int n = 5;
+int n;
 
 void input() {
-    cout << "Enter the elements of array : " << endl;
+    cout << "Enter the size of array :" << endl;
+    cin >> n;
+    cout << "Enter the elements of array (< 50): " << endl;
     for(int i = 0; i < n; i++)
         cin >> arr[i];
 }
@@ -81,6 +83,20 @@ void frequency() {
             count++;
     cout << "The element " << num << " i s present " << count << " times." << endl;
 }
+void distinct_frequency() {
+    for (int i = 0; i < n; i++) {
+        int count = 1;
+        int flag = 0;
+        for(int j = 0; j < i; j++) 
+            if(arr[i] == arr[j]) 
+                flag = 1;
+        if(flag) continue;
+        for(int k = i + 1; k < n; k++)
+            if(arr[i] == arr[k])
+                count++;
+        cout << "The element " << arr[i] << " is present " << count << " times." << endl;
+    }
+}
 int sum() {
     int sum = 0;
     for(int i = 0; i < n; i++)
@@ -105,18 +121,46 @@ void min() {
             min = arr[i];
     cout << "Maximum element is " << min << endl;
 }
+void display_distinct() {
+    cout << "The distinct elements in the array are :" << endl;
+    for (int i = 0; i < n; i++) {
+        int flag = 0;
+        for(int j = 0; j < i; j++) 
+            if(arr[i] == arr[j]) 
+                flag = 1;
+        if(flag) continue;
+        cout << arr[i] << " ";
+    }
+    cout << "\n";
+}
+void display_duplicate() {
+    cout << "The duplicate elements in the array are :" << endl;
+    for (int i = 0; i < n; i++) {
+        int flag = 0;
+        for(int j = 0; j < i; j++) 
+            if(arr[i] == arr[j]) 
+                flag = 1;
+        if(flag == 0) continue;
+        cout << arr[i] << " ";
+    }
+    cout << "\n";
+}
 
 int main(void) {  
     input();
+    //display();
     //  reverse();
     // search();
     //replace();
-    //display();
+    //insert_missed(); //Not implemented yet
     //sort();
-   // display();
+    //insert_missed_soreted(); //N I Y
    //Delete();
-   //display();
    //frequency();
+   //display_distinct();
+   //distinct_frequency();
+   //display_duplicate();
+   //remove_duplicate(); //Not implemented yet
    //sum();
    //average();
    //max();
