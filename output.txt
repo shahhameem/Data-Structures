@@ -1,6 +1,0 @@
-Before changing:
-1	2	3	4	5	
-After changing
-2	4	6	8	10	
- New Array:
-1	1	1	1	1	
