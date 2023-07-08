@@ -5,7 +5,7 @@ using namespace std;
 int arr[MAX_SIZE];
 int n;
 
-void input() {
+void read() {
     cout << "Enter the size of array :" << endl;
     cin >> n;
     cout << "Enter the elements of array (< 50): " << endl;
@@ -21,6 +21,7 @@ void reverse() {
     for(int i = n - 1; i >= 0; i--)
         cout << "arr[" <<i << "] = " << arr[i] << endl;
 }
+
 void search() {
     int beg = 0, end = n - 1, num;
     cout << "Enter the element you want to search : " << ends;
@@ -41,6 +42,7 @@ void search() {
     }
     
 }
+
 void replace() {
     int old, New;
     cout << "Enter the element you want to replace and the new element : " << endl;
@@ -49,17 +51,20 @@ void replace() {
         if (arr[i] == old) 
             arr[i] = New;
 }
+
 void swap(int * x, int * y) {
     int temp = * y;
     * y = * x;
     *x = temp;
 }
+
 void sort() {
     for(int i = 0; i < n - 1; i++)
         for(int j = 0; j < n - i - 1; j++)
             if(arr[j] > arr[j+1])
                 swap(&arr[j], &arr[j+1]);
 }
+
 void Delete() {
     int num, index;
     cout << "Enter the element you want to delete :" << endl;
@@ -74,6 +79,7 @@ void Delete() {
         arr[i] = arr[i+1];
     n -= 1;
 }
+
 void frequency() {
     int num, count = 0;
     cout << "Enter the element who's frequency you want to find :" << endl;
@@ -83,6 +89,7 @@ void frequency() {
             count++;
     cout << "The element " << num << " i s present " << count << " times." << endl;
 }
+
 void distinct_frequency() {
     for (int i = 0; i < n; i++) {
         int count = 1;
@@ -97,6 +104,7 @@ void distinct_frequency() {
         cout << "The element " << arr[i] << " is present " << count << " times." << endl;
     }
 }
+
 int sum() {
     int sum = 0;
     for(int i = 0; i < n; i++)
@@ -104,9 +112,11 @@ int sum() {
     cout << "The sum of the elements of the array is " << sum << endl;
     return sum;
 }
+
 void average() {
     cout << "The average of the elements of the array is " << (float) sum()/n << endl;
 }
+
 void max() {
     int max = arr[0];
     for(int i = 0; i < n; i++)
@@ -114,6 +124,7 @@ void max() {
             max = arr[i];
     cout << "Maximum element is " << max << endl;
 }
+
 void min() {
     int min = arr[0];
     for(int i = 0; i < n; i++)
@@ -121,6 +132,7 @@ void min() {
             min = arr[i];
     cout << "Maximum element is " << min << endl;
 }
+
 void display_distinct() {
     cout << "The distinct elements in the array are :" << endl;
     for (int i = 0; i < n; i++) {
@@ -133,6 +145,7 @@ void display_distinct() {
     }
     cout << "\n";
 }
+
 void display_duplicate() {
     cout << "The duplicate elements in the array are :" << endl;
     for (int i = 0; i < n; i++) {
@@ -146,15 +159,29 @@ void display_duplicate() {
     cout << "\n";
 }
 
+void insert_missed_sorted() {
+    cout << "Enter the missing element: " << endl;
+    int missed;
+    cin >> missed;
+    int i;
+    for (i = n - 1; i >= 0 && arr[i] > missed; i--) {
+        arr[i + 1] = arr[i];
+    }
+    arr[i + 1] = missed;
+    n++;
+    display();
+}
+
+
 int main(void) {  
-    input();
+    read();
     //display();
     //  reverse();
     // search();
     //replace();
     //insert_missed(); //Not implemented yet
     //sort();
-    //insert_missed_soreted(); //N I Y
+    //insert_missed_sorted(); 
    //Delete();
    //frequency();
    //display_distinct();
