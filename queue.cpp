@@ -1,8 +1,11 @@
 #include <iostream>
+#include <cstdlib>
 using namespace std;
 #define N 9
+template <class T>
 class queue{
-	int front, rear, q[N];
+	int front, rear;
+	T q[N];
 	public :
 	queue() {front = 0;rear = -1;}
 	void enqueue() {
@@ -11,18 +14,18 @@ class queue{
 			return;
 		}
 		if(rear == -1) {rear = 0;}
-		float item;
+		T item;
 		cout << "Enter element to insert = ";
 		cin >> item;
 		q[rear] = item;
 		rear++;
 		return;
 	}
-	int dequeue() {
+	T dequeue() {
 		if(isempty()) {
 			cout << "Underflow" << endl;
 			return 0;
-		} int item = q[front];
+		} T item = q[front];
 		front++;
 		return item;
 	}
@@ -38,7 +41,7 @@ class queue{
 	~queue() {cout << "Queue Destroyed!" << endl;}
 };
 int main() {
-	queue Q1;
+	queue<float> Q1;
 	int option, deqItem;
 	while(1){
 	cout << "Enter the operation you want to perform.\n1.Enqueue\n2.Dequeue\n3.Check Empty\n4.Display\n5.Exit\n";

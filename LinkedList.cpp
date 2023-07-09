@@ -1,10 +1,11 @@
 #include <iostream>
 //Blueprint of node having two parts data and link part
+template <class
 class Node {
 	public :
 		int data;
 		Node* link;
-};
+
 //Function to read the linked list
 int print(Node* n) {
 	while(n != NULL) {
@@ -21,6 +22,8 @@ int insertFirst(Node**n, int value) {
 	*n = newNode;
 	return 0;
 }
+};
+
 //Creating nodes in main function
 int main() {
 
