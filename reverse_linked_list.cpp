@@ -8,7 +8,7 @@ public:
 
 void print(Node* n) {
 	while (n != NULL) {
-		cout << n->data << ends;
+		cout << n->data << "\t";
 		n = n->link;
 	}
 }
@@ -28,7 +28,7 @@ Node* reverse(Node* &n) {
 }
 
 void insert(Node** head, int value) {
-    Node* newNode = (Node*)malloc(sizeof(Node));
+    Node* newNode = new Node;
     newNode->data = value;
     newNode->link = NULL;
 
@@ -50,13 +50,13 @@ int main() {
     int value;
     char contd = 'y';
     while(1) {
-    	printf("Enter the value you want to insert in the linked list: \n");
-        scanf("%d", &value);
+    	cout << "Enter the value you want to insert in the linked list: \n";
+        cin >>value;
         insert(&head, value);
         print(head);
 		cout.flush();
-        printf("\nEnter y to add or other key to stop\n");
-        scanf(" %c", &contd);
+        cout << "\nEnter y to add or other key to stop: \n";
+        cin>>contd;
         if(contd != 'y') break;
 	}
 	cout << endl << "Before reversing" << endl;
@@ -64,5 +64,5 @@ int main() {
 	cout << endl <<"After reversing" << endl;
 	head = reverse(head);
 	print(head);
-	system("pause>0");
+	//system("pause>0");
 }

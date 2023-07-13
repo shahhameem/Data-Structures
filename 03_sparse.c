@@ -37,20 +37,21 @@ void toSparse() {
 	sparse[0][0] = ROW;
 	sparse[0][1] = COL;
 	sparse[0][2] = value;
-	int a = 0, b = 0, c = 0;
+	int index = 1;
 	for(i = 0; i < ROW; i++)
 		for(j = 0; j < COL; j++)
 			if(mat[i][j] != 0){
-				sparse[++a][0] = i;
-				sparse[++b][1] = j;
-				sparse[++c][2] = mat[i][j];
+				sparse[index][0] = i;
+				sparse[index][1] = j;
+				sparse[index][2] = mat[i][j];
+				index++;
 			} 
 	print(sparse,value+1, 3);
 	toMat(sparse, value);
 }
 void toMat(int spr[][3], int value) {
 	int newMat[ROW] [COL] = {0};
-	for(int i = 0; i <= value; i++){
+	for(int i = 1; i <= value; i++){
 			newMat[spr[i][0]][spr[i][1]]  = spr[i][2];
 	}
 	printf("The new matrix created is :-\n");
