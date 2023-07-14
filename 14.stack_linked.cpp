@@ -27,8 +27,8 @@ class stack{
             return -1;
         }else {
                 T popped = head->data;
-                node* temp = head->next;
-                head->next = head->next->next;
+                node* temp = head;
+                head = head->next;
                 delete temp;
                 return popped;
          }
@@ -45,18 +45,13 @@ class stack{
 
         void push(T value)
         {
-            node* newnode = new node;
-            newnode->data = value;
-            newnode->next = NULL;        
-            if(head == NULL)
-                head = newnode;
-            else{
-                node* temp = head;
-                while(temp->next != NULL){
-                        temp = temp->next;
-                    }temp->next = newnode;
-            }   
+            node* newnode = new node;   //creates a new node
+            newnode->data = value;        
+            newnode->next = head;   
+            head = newnode;
         }
+
+        ~stack();   //destructor
 };
 
 int main(int argc, char** argv){
