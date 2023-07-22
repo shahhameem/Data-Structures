@@ -17,11 +17,11 @@ public:
     void insert(int value) {
         Node* newNode = new Node();
         newNode->data = value;
-        newNode->prev = nullptr;
         newNode->next = nullptr;
 
         if (head == nullptr) {
             head = newNode;
+            newNode->prev = nullptr;
         } else {
             Node* current = head;
             while (current->next != nullptr) {
@@ -34,9 +34,18 @@ public:
 
     void display() {
         Node* current = head;
+        Node* temp = nullptr;
         while (current != nullptr) {
             cout << current->data << " ";
+        if(current -> next != nullptr)
+            temp = current->next;
             current = current->next;
+        }
+        cout << endl;
+    //Reverse traversal
+        while (temp != nullptr) {
+            cout << temp->data << " ";
+            temp = temp->prev;
         }
         cout << endl;
     }

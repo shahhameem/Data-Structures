@@ -14,6 +14,6 @@ int main()
     cout << "Enter the number :";
     int num;
     cin >> num;
-    cout << "Factoria of the number = " << fact(num) << endl;
+    cout << "Factorial of the number = " << fact(num) << endl;
     return 0;
 }

@@ -12,10 +12,12 @@ void read() {
     for(int i = 0; i < n; i++)
         cin >> arr[i];
 }
+
 void display() {
     for(int i = 0; i < n; i++)
         cout << "arr[" <<i << "] = " << arr[i] << endl;
 }
+
 void reverse() {
     cout << "Elements in reverse :" << endl;
     for(int i = n - 1; i >= 0; i--)
