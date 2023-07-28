@@ -1,5 +1,5 @@
 #include <iostream>
-#include <fstream> 
+#include <stack>
 using namespace std;
 
 struct Node
@@ -49,6 +49,43 @@ void inorder(Node* root)
 	inorder(root->right);
 }
 
+void iterativePreoder(Node* root)
+{
+	stack<Node*> s;
+	while(root != nullptr || !s.empty())
+	{
+		if(root != nullptr)
+		{
+			cout << root->data <<"	";
+			s.push(root);
+			root = root->left;
+		} else
+		{
+			root = s.top();
+			s.pop();
+			//cout << root->data <<" "; //for inorder
+			root = root->right;
+		}
+	}
+}
+int count(Node* root)
+{
+	int x, y;
+	if(root != nullptr)
+	{
+		x = count(root->left);
+		y = count(root->right);
+		return x + y + 1;
+	}
+	return 0;
+}
+// void del(Node* root)
+// {
+// 	//cout << "Enter the value of node to be deleted : ";
+// 	int node; cin >> node;
+	
+// }
+
 int main()
 {
 #ifndef ONLINE_JUDGE
@@ -57,6 +94,6 @@ int main()
 #endif
 	Node* root = nullptr;
 	root = create();
-	inorder(root);
+	cout << count(root);
 	return 0;
 }
