@@ -13,8 +13,11 @@ private:
     Node* head;
 public:
     DoublyLinkedList() : head(nullptr) {}
-
-    void insert(int value) {
+    void insert(int);
+    void display();
+    //Node* create();
+};
+    void DoublyLinkedList::insert(int value) {
         Node* newNode = new Node();
         newNode->data = value;
         newNode->next = nullptr;
@@ -32,9 +35,10 @@ public:
         }
     }
 
-    void display() {
+    void DoublyLinkedList::display() {
         Node* current = head;
         Node* temp = nullptr;
+        cout << "The List is : \n";
         while (current != nullptr) {
             cout << current->data << " ";
         if(current -> next != nullptr)
@@ -49,18 +53,37 @@ public:
         }
         cout << endl;
     }
-};
+
+// Node* DoublyLinkedList::create() {
+
+// }
 
 int main() {
     DoublyLinkedList myList;
-
-    myList.insert(10);
-    myList.insert(20);
-    myList.insert(30);
-    myList.insert(40);
-
-    myList.display();
-
+    char exit ='y';
+    int key;
+    do
+    {
+        cout << "Enter the numbers for respective operations\n1.Insert item in List.\n2.Print List\n3.Delete Item\n4.Instant Create\n";
+        cin >> key;
+        switch(key)
+        {
+            int num;
+            case 1: cout << "Enter the item :";
+            cin >> num;
+            myList.insert(num);
+            break;
+            case 2: myList.display(); break;
+            case 3: //will be implemented soon 
+            break;
+            case 4:
+            //myList.create();
+            break;
+            default: return 0;
+        }
+        cout << "Do you want to exit(y/Y) :";
+        cin >> exit;
+    } while(exit != 'y' && exit !='Y');
     return 0;
 }
 
