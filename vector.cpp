@@ -1,32 +1,30 @@
-// C++ program to illustrate the
-// iterators in vector
-#include <iostream>
 #include <vector>
-
-using namespace std;
+#include <deque>
+#include <iostream>
 
 int main()
 {
-	vector<int> g1;
+	////Vector
+    // std::vector<int> vect;
+    // for (int count=0; count < 6; ++count)
+    //     vect.push_back(10 - count); // insert at end of array
 
-	for (int i = 1; i <= 5; i++)
-		g1.push_back(i);
+    // for (int index=0; index < vect.size(); ++index)
+    //     std::cout << vect[index] << ' ';
 
-	cout << "Output of begin and end: ";
-	for (auto i = g1.begin(); i != g1.end(); ++i)
-		cout << *i << " ";
+    // std::cout << '\n';
 
-	cout << "\nOutput of cbegin and cend: ";
-	for (auto i = g1.cbegin(); i != g1.cend(); ++i)
-		cout << *i << " ";
+	// //Deque
+    // std::deque<int> deq;
+    // for (int count=0; count < 3; ++count)
+    // {
+    //     deq.push_back(count); // insert at end of array
+    //     deq.push_front(10 - count); // insert at front of array
+    // }
+    
+    // for (int index=0; index < deq.size(); ++index)
+    //     std::cout << deq[index] << ' ';
 
-	cout << "\nOutput of rbegin and rend: ";
-	for (auto ir = g1.rbegin(); ir != g1.rend(); ++ir)
-		cout << *ir << " ";
+    // std::cout << '\n';
 
-	cout << "\nOutput of crbegin and crend : ";
-	for (auto ir = g1.crbegin(); ir != g1.crend(); ++ir)
-		cout << *ir << " ";
-
-	return 0;
 }

@@ -1,66 +1,25 @@
 #include <iostream>
+#include "DDL.h"
 using namespace std;
 
-class Node {
-public:
-    int data;
-    Node* prev;
-    Node* next;
-};
-
-class DoublyLinkedList {
-private:
-    Node* head;
-public:
-    DoublyLinkedList() : head(nullptr) {}
-
-    void insert(int value) {
-        Node* newNode = new Node();
-        newNode->data = value;
-        newNode->next = nullptr;
-
-        if (head == nullptr) {
-            head = newNode;
-            newNode->prev = nullptr;
-        } else {
-            Node* current = head;
-            while (current->next != nullptr) {
-                current = current->next;
-            }
-            current->next = newNode;
-            newNode->prev = current;
-        }
-    }
-
-    void display() {
-        Node* current = head;
-        Node* temp = nullptr;
-        while (current != nullptr) {
-            cout << current->data << " ";
-        if(current -> next != nullptr)
-            temp = current->next;
-            current = current->next;
-        }
-        cout << endl;
-    //Reverse traversal
-        while (temp != nullptr) {
-            cout << temp->data << " ";
-            temp = temp->prev;
-        }
-        cout << endl;
-    }
-};
 
 int main() {
-    DoublyLinkedList myList;
-
-    myList.insert(10);
-    myList.insert(20);
-    myList.insert(30);
-    myList.insert(40);
-
-    myList.display();
-
-    return 0;
+    DoublyLinkedList<float> myList;
+	while(1) {
+		int key, num;
+		cout << "Enter 0 to create List 1 to insert 2 to print and 3 to reverse print 4 to delete and 5 to quite 6 to insert at front" << endl;
+		cin >> key;
+		switch(key) {
+            case 6: cout << "Enter : "; cin >> num; myList.insertFront(num); break;
+            case 0: myList.create(); break;
+			case 1: cout << "Enter : "; cin >> num; myList.insertEnd(num); break;
+			case 2: myList.display(); break;
+			case 3: myList.printR(); break;
+			case 4: myList.del(); break;
+			case 5: exit(0);
+			default : cout << "404, ERR" << endl;
+		}
+	}
+	return 0;
 }
 
