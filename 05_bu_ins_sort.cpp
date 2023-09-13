@@ -6,7 +6,7 @@ int n;
 void swap(int &x, int &y)
 {
 	int temp = y;
-	y = x;
+	y = x;	
 	x = temp;
 }
 

@@ -1,6 +1,6 @@
 #include <iostream>
-#include <string>
 using namespace std;
+
 template <class T, int SIZE>
 class Stack
 {
@@ -32,7 +32,7 @@ T pop()
 T peek()
 {
      if (isEmpty()) {
-            cout << "Stack is empty." << endl;
+            cout << "\nStack is empty." << endl;
             return -1;
         }
     return array[top];
@@ -58,12 +58,12 @@ int main()
     while(1)
     {
         short key;
-        cout << "\nEnter 1. To Push 2. To Pop 3.Check Empty 4. Check Full 5. Peek 6. Exit :" << endl;
+        cout << "\nEnter 1. To Push 2. To Pop 3.Check Empty 4. Check Full 5. Peek 6. Exit : ";
         cin >> key;
         switch(key)
         {
-            case 1 : cout << "\nEnter the value : "; cin >> value; s1.push(value); break;
-            case 2: cout <<(s1.pop() == -1 ?  "":  to_string(s1.pop()) + " popped.") << endl; break;
+            case 1: cout << "\nEnter the value : "; cin >> value; s1.push(value); break;
+            case 2: cout << s1.pop() << " popped."; break;
             case 3: cout << (s1.isEmpty() ? "Yes" : "No") << endl; break;
             case 4: cout << (s1.isFull()? "Yes" : "No") << endl; break;
             case 5: cout << s1.peek() << endl; break;

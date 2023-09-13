@@ -106,6 +106,7 @@ public:
 	    tail = NULL;
 	    return;
     }
+    friend void freq(DoublyLinkedList<int>);
 };
 
 #endif
