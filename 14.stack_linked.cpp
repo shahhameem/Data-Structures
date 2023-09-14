@@ -1,8 +1,8 @@
 #include <iostream>
 using namespace std;
+
 template <class T>
 class stack{
-
     private:
         struct node{
             T data;
@@ -50,8 +50,6 @@ class stack{
             newnode->next = head;   
             head = newnode;
         }
-
-        ~stack();   //destructor
 };
 
 int main(int argc, char** argv){
@@ -64,15 +62,23 @@ int main(int argc, char** argv){
         cin >> key;
         switch(key)
         {
-            case 1 : cout << "\nEnter the value : "; cin >> value; s1.push(value); break;
+            case 1 : 
+                cout << "\nEnter the value : "; 
+                cin >> value; s1.push(value); 
+            break;
             case 2:
                 value = s1.pop();
                 if (value != -1)
                     cout << value << " popped." << endl;
                 break;
-            case 3: cout << (s1.isEmpty() ? "Yes" : "No") << endl; break;
-            case 4: if(s1.peek() != -1)cout << s1.peek() << endl; break;
-            case 5 : return 0;
+            case 3: 
+                cout << (s1.isEmpty() ? "Yes" : "No") << endl; 
+            break;
+            case 4: 
+                if(s1.peek() != -1)cout << s1.peek() << endl; 
+            break;
+            case 5 : 
+                exit(0);
         }
     }
     return 0;
