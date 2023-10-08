@@ -5,7 +5,8 @@ class Node{
 public:
 	int data;
 	Node *left, *right;
-	Node(){
+	Node(int data){
+		this->data = data;
 		left = right = nullptr;
 	}
 };
@@ -15,24 +16,69 @@ class BinarySearchTree{
 		Node* root;
 	public:
 		BinarySearchTree() : root(nullptr) {}
-		Node* getRoot() {return root;}
 		Node* insert(Node*, int);
-		//void inorder();
+		void inorder(Node*);
+		Node* Delete(Node*, int);
+		Node* findMin(Node*);
+		void deleteNode(int value) {
+			root = Delete(root, value);
+		}
+		void insertNode(int value) {
+			root = insert(root, value);
+		}
+		void inorderTraversal() {
+			inorder(root);
+		}
 };
 
+Node* BinarySearchTree::findMin(Node* ptr) {
+	while(ptr->left != nullptr) 
+		ptr = ptr->left;
+	return ptr;
+}
+
 Node* BinarySearchTree::insert(Node* ptr, int value){
-	if(ptr == nullptr){
-		Node* newnode = new Node;
-		newnode->data = value;
-		ptr = newnode;
-		return ptr;
-	}
-	if(value < ptr->data){
+	if(ptr == nullptr)
+		return new Node(value);
+	else if(value < ptr->data)
 		ptr->left = insert(ptr->left, value);
-	}
-	else {
+	else
 		ptr->right = insert(ptr->right, value);
+	return ptr;
+}
+
+void BinarySearchTree::inorder(Node* ptr) {
+		if (ptr == nullptr) return;
+		inorder(ptr->left);
+		cout << ptr->data << "	";
+		inorder(ptr->right);
+}
+
+Node* BinarySearchTree::Delete(Node* root, int value) {
+	if(root == nullptr)
+		return root;
+	else if(value < root->data)
+		root->left = Delete(root->left, value);
+	else if(value > root->data)
+		root->right = Delete(root->right, value);
+	else {
+		if(root->left == nullptr){
+			Node* temp = root->right;
+			delete root;
+			return temp;
+		}
+		else if(root->right == nullptr) {
+			Node* temp = root->left;
+			delete root;
+			return temp;
+		}
+		else {
+			Node* temp = findMin(root->right);
+			root->data = temp->data;
+			root->right = Delete(root->right, temp->data);
+		}
 	}
+	return root;
 }
 
 int main(){
@@ -41,8 +87,14 @@ int main(){
     freopen("output.txt", "w", stdout);
 #endif
 	BinarySearchTree b1;
-	for(int i = 10; i < 100; i+=10)
-		b1.insert(b1.getRoot(), i);
-	b1.
+	int val;
+	while(1) {
+		cin >> val;
+		if (val == -1)
+			break;
+		b1.insertNode(val);
+	}
+	b1.deleteNode(70);
+	b1.inorderTraversal();
 	return 0;
 }
