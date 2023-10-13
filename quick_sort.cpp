@@ -1,39 +1,42 @@
-#include <iostream>
+#include<iostream>
 
-void swap(int &x, int &y) {
-    int temp = x;
-    x = y;
-    y = temp;
+void swap(int& x, int& y) {
+    int temp = y;
+    y = x;
+    x = temp;
 }
 
-int partition(int arr[], int low, int high) {
-    int pivot = arr[high];
+int partition(int A[], int low, int high) {
+    int pivot = A[high];
     int i = (low - 1);
     for(int j = low; j < high; j++) {
-        if(arr[j] <= pivot) {
+        if (A[j] <= pivot){
             i++;
-            swap(arr[i], arr[j]);
+            swap(A[i], A[j]);
         }
     }
-    swap(arr[i+1], arr[high]);
+    swap(A[i + 1], A[high]);
     return (i + 1);
 }
 
-void quicksort(int arr[], int low, int high) {
+void quicksort(int ARR[], int low, int high) {
     if(low < high) {
-        int p = partition(arr, low, high);
-        quicksort(arr, low, p - 1);
-        quicksort(arr, p + 1, high);
+        int p = partition(ARR, low, high);
+        quicksort(ARR, low, p - 1);
+        quicksort(ARR, p + 1, high);
     }
 }
 
+void display(int arr[], int size) {
+    for(int i = 0; i < size; i++)
+        printf("%d ", arr[i]);
+    printf("\n");
+}
+
 int main() {
-    int arr[] = {1,3,5,7,8,9,2,0,6};
-    int high = sizeof(arr)/sizeof(arr[0]);
-    int low = 0;
-    quicksort(arr, low, high - 1);
-    for(int i = 0; i < high; i++)
-        std::cout << arr[i] << "    ";
-    std::cout << std::endl;
+    int arr[] = {3, 5, 2, 9, 1, 0, 4, 7, 6};
+    int high = sizeof(arr) / sizeof(arr[0]);
+    quicksort(arr, 0, high - 1);
+    display(arr, high);
     return 0;
 }
