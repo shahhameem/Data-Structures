@@ -1,53 +1,69 @@
 #include <iostream>
-#include "DDL.h"
+#include <list>
 using namespace std;
-
-typedef DoublyLinkedList<int> list;
 
 class Graph {
 private:
-    int V;              // Number of vertices
-    list* adj; // Pointer to an array containing adjacency lists
+    int V;            
+    list<int>* adj; 
+
+    void addEdgeDirected(int v, int w) {
+        adj[v].push_back(w);
+    }
+
+    void addEdgeUndirected(int v, int w) {
+         adj[v].push_back(w);
+        adj[w].push_back(v);        
+    }
 
 public:
-    // Constructor to initialize the graph with a given number of vertices
-    Graph(int vertices) {
-        V = vertices;
-        adj = new list [V];
+
+    void addEdge(int v, int w, bool flag) {
+        if(flag)    addEdgeDirected(v, w);
+        addEdgeUndirected(v, w);
     }
 
-    // Function to add an edge between two vertices
-    void addEdge(int v, int w) {
-        adj[v].insertEnd(w);
-        //adj[w].insertEnd(v); // For undirected graph
-    }
+    void create() {
+        cout << "Enter the number of verticies: ";
+        cin >> V;
 
-    // Function to print the adjacency list representation of the graph
-    void printGraph() {
-        for(int i = 0; i < V; i++) {
-            cout << i << " -> ";
-            adj[i].display();
+        cout << "Is the graph directed graph(1 if yes or 0 for no): ";
+        bool flag{}; cin >> flag;
+
+
+        adj = new list<int>[V];
+
+        for(int i = 0; i < V; i++){
+            cout << "Enter the adjcents of vertex (-999 if not)\n" <<  i << ": ";
+            int adjcent{}; cin >> adjcent;
+            while(adjcent != -999){
+                addEdge(i, adjcent, flag);
+                cin >> adjcent;
+            }
+            cout << endl;
         }
     }
 
-    // Destructor to free memory
+    void printGraph() {
+        for(int i = 0; i < V; i++) {
+            cout << i << " -> ";
+            //adj[i].display();
+            for (auto i : adj[i])
+                cout << i << ' ';
+            cout <<  endl;
+        }
+    }
+
     ~Graph() {
         delete[] adj;
     }
 };
 
 int main() {
-    // Create a graph with 5 vertices
-    Graph g(4);
+    Graph g;
 
-    // Add edges
-   g.addEdge(0, 1);
-   g.addEdge(0, 3);
-   g.addEdge(1, 3);
-   g.addEdge(1, 2);
-   g.addEdge(3, 2);
+    g.create();
 
-    // Print the adjacency list
     cout << "Adjacency List Representation of the Graph:" << endl;
     g.printGraph();
 

@@ -1,38 +1,16 @@
 #include <iostream>
+#include "ALGO.H"
 using namespace std;
 #define MAX_SIZE 100
-int n;
-const int lsearch(int arr[], int num)
-{
-	for (int i = 0; i < n; ++i)
-		if (arr[i] == num)
-			return i;
-	return -1;
-}
-
-const int bsearch(int arr[], int num)
-{
-	int beg, mid, end;
-	while(beg < end)
-	{
-		mid = (beg + end) / 2;
-		if(num < arr[mid])
-			end = mid - 1;
-		else if(num > arr[mid])
-			beg = mid + 1;
-		else 
-			return mid;
-	}
-	return -1;
-}
 
 int main(int argc, char const *argv[])
 {
-	#ifndef ONLINE_JUDGE
-		freopen("input.txt", "r", stdin);
-		freopen("output.txt", "w", stdout);
-	#endif
-	int arr[MAX_SIZE];
+	// #ifndef ONLINE_JUDGE
+	// 	freopen("input.txt", "r", stdin);
+	// 	freopen("output.txt", "w", stdout);
+	// #endif
+	Algo<int> a;
+	int arr[MAX_SIZE], n;
 	//cout << "Enter the number of elemetns";
 	cin >> n;
 	//cout << "Enter the elements (less than 100) :";
@@ -40,7 +18,8 @@ int main(int argc, char const *argv[])
 		cin >> arr[i];
 	//cout << "Enter the element you want to search :";
 	int num{}; cin >> num;
-	int loc = bsearch(arr, num);
+	//int loc = a.bsearch(arr, num);
+	int loc = a.lsearch(arr, n, num);
 	if(loc != -1)
 		cout << "Element " << num << " is found at " << loc <<endl;
 	else 

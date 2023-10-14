@@ -1,5 +1,7 @@
 #include <iostream>
-#include "Queue"
+#include "Queue.h"	//For BFS
+#include "STACK.H"	//For DFS
+#include "ALGO.H"	//For Linear Search
 using namespace std;
 
 class Node{
@@ -23,8 +25,9 @@ class BinaryTree{
 		void inorder(Node*);
 		void preorder(Node*);
 		void postorder(Node*);
-		void bfs(Node*);
-			void create() {
+		void bfs();
+		void dfs();
+		void create() {
 			root = make();
 		}
 		void Insert() {
@@ -35,22 +38,25 @@ class BinaryTree{
 		}
 		void traverse() {
 			int flag;
-			cout << "Enter the option\n1.Inorder\n2.Preorder\n3.Postorder\n4.BFS\n";
+			cout << "Enter the option\n1.Inorder\n2.Preorder\n3.Postorder\n4.BFS\n5.DFS\n";
 			cin >> flag;
 			switch (flag)
 			{
 			case 1:
 				inorder(root);
-				break;
+			break;
 			case 2:
 				preorder(root);
-				break;
+			break;
 			case 3:
 				postorder(root);
-				break;
+			break;
 			case 4:
-				bfs(root);
-				break;											
+				bfs();
+			break;	
+			case 5:
+				dfs();
+			break;
 			default:
 				return;
 				break;
@@ -107,8 +113,43 @@ void BinaryTree::postorder(Node* root)
 	cout << root->data << "	";
 }
 
-void BinaryTree::bfs(Node* root) {
-	cout << "Under construction.";
+void visit(Node* item) {
+
+	cout << item->data << "	";
+}
+
+void BinaryTree::bfs() {
+    if (root == nullptr) return;
+
+    Queue<Node*, 10> q;
+    q.enqueue(root);
+
+    while (!q.isempty()) {
+        Node* current = q.dequeue();
+        visit(current);
+
+        if (current->left != nullptr)
+            q.enqueue(current->left);
+        if (current->right != nullptr)
+            q.enqueue(current->right);
+    }
+}
+
+void BinaryTree::dfs() {
+	if (root == nullptr) return;
+
+	Stack<Node*, 10> s;
+	Node* current = root;
+	while(!s.isEmpty() || current != nullptr) {
+		if(current != nullptr){
+			s.push(current);
+			current = current->left;
+		}
+		current = s.peek();
+		s.pop();
+		visit(current);
+		current = current->right;
+	}
 }
 
 int main(){
